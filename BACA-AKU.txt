@@ -1,0 +1,5 @@
+Tes MBTI Negeri Dongeng
+
+Cara pakai: buka index.html di browser (double click). Butuh internet buat font Google Fonts (kalau offline tetap jalan pake font bawaan).
+Upload ke hosting statis (Netlify, GitHub Pages, Vercel) kalau mau dibagiin ke orang lain.
+Tombol download hasil (.html / .txt) jalan langsung di browser.

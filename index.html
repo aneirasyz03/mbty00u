@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tes MBTI Negeri Dongeng</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffe8f5;--bg2:#e4dcff;--bg3:#d6f6ea;--ink:#4a3470;--card:#fffaf0;--pink:#ff7eb8;--gold:#ffd66b;--mute:#8a72b0;--line:#f1d9ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1f5c;--bg2:#1f1746;--bg3:#173a4a;--ink:#fdf0ff;--card:#33286b;--mute:#c5b2ef;--line:#4b3d8f}}
+:root[data-theme="dark"]{--bg:#2a1f5c;--bg2:#1f1746;--bg3:#173a4a;--ink:#fdf0ff;--card:#33286b;--mute:#c5b2ef;--line:#4b3d8f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);background:linear-gradient(170deg,var(--bg),var(--bg2) 55%,var(--bg3)) fixed;font:400 17px/1.65 "Fredoka",system-ui,sans-serif;overflow-x:hidden}
+main{max-width:640px;margin:0 auto;padding:16px 16px 60px;position:relative}
+h1,.big,h2{font-family:"Pacifico","Fredoka",cursive;font-weight:400}
+h1{font-size:clamp(1.9rem,8vw,2.8rem);line-height:1.25;margin:.2em 0;text-align:center}
+h2{font-size:1.35rem;margin:1.2em 0 .4em;line-height:1.3}
+.card{background:var(--card);border:3px dashed var(--gold);border-radius:30px;padding:22px;margin:16px 0;box-shadow:0 10px 30px rgba(150,100,220,.22)}
+.btn{font:inherit;font-weight:600;background:linear-gradient(135deg,#ff7eb8,#ff9ad0);color:#fff;border:0;border-radius:99px;padding:13px 24px;cursor:pointer;box-shadow:0 6px 0 #d8579a,0 10px 18px rgba(216,87,154,.3);transition:transform .12s}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #d8579a}
+.btn.alt{background:linear-gradient(135deg,#ffd66b,#ffe79a);color:#6b4a00;box-shadow:0 6px 0 #d9a92b,0 10px 18px rgba(217,169,43,.3)}
+.btn.alt:active{box-shadow:0 2px 0 #d9a92b}
+.opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:22px;padding:14px 16px;margin:12px 0;cursor:pointer;transition:transform .15s,background .15s}
+.opt:hover,.opt:focus-visible{background:var(--gold);color:#4a3470;transform:scale(1.02) rotate(-.5deg);outline:none}
+.bar{height:14px;background:var(--line);border-radius:9px;overflow:hidden;margin:4px 0 12px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#ff7eb8,#ffd66b);border-radius:9px}
+.prog{height:14px;background:var(--line);border-radius:9px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,#ff7eb8,#ffd66b);border-radius:9px;transition:width .3s}
+.big{font-size:clamp(3rem,16vw,5rem);line-height:1.1;margin:0;color:var(--pink)}
+.tag{display:inline-block;background:var(--gold);color:#4a3470;border-radius:99px;padding:2px 14px;font-weight:500;margin:3px 4px 3px 0}
+.mute{color:var(--mute)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+.f{border-top:2px dotted var(--line);padding-top:10px;margin-top:10px}
+.hero{text-align:center}
+.hero svg{width:100%;max-width:360px;height:auto;animation:pop 1s 1.5s both cubic-bezier(.3,1.6,.5,1)}
+.st{position:absolute;color:var(--gold);animation:tw 2.4s infinite ease-in-out}
+.hero .btn{font-size:1.15rem;margin:10px 0}
+#cur{position:fixed;inset:0;z-index:9;display:flex;pointer-events:none}
+#cur i{flex:1;background:repeating-linear-gradient(90deg,#ff8fc4 0 26px,#ffa8d3 26px 52px);animation:cl 1.3s 1.1s cubic-bezier(.7,0,.3,1) forwards}
+#cur i+i{animation-name:cr}
+#cur b{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font:400 1.5rem/1.4 "Pacifico",cursive;color:#fff;text-shadow:0 3px 0 #d8579a;padding:20px;animation:fo .5s .8s forwards}
+@keyframes cl{to{transform:translateX(-101%)}}
+@keyframes cr{to{transform:translateX(101%)}}
+@keyframes fo{to{opacity:0}}
+@keyframes pop{from{transform:scale(.3) translateY(60px);opacity:0}to{transform:none;opacity:1}}
+@keyframes tw{50%{opacity:.25;transform:scale(.6)}}
+@media (prefers-reduced-motion:reduce){#cur{display:none}.hero svg,.st{animation:none}}
+.pair{display:flex;gap:10px}
+.side{flex:1;padding:12px 14px;border-radius:20px;font-size:.95rem;line-height:1.4;color:#4a3470}
+.side.a{background:#ffd6ea}.side.b{background:#fff0bd}
+.sc{display:flex;justify-content:space-between;align-items:center;margin:20px 4px 6px}
+.lb{display:flex;justify-content:space-between;font-size:.75rem;color:var(--mute)}
+.dot{border-radius:50%;border:3px solid;cursor:pointer;background:var(--card);padding:0;transition:transform .15s}
+.dot:hover,.dot:focus-visible{transform:scale(1.12);outline:none}
+.dot.l{border-color:#ff7eb8}.dot.m{border-color:#b9a7dc}.dot.r{border-color:#e6b422}
+.dot.l:hover,.dot.l.on{background:#ff7eb8}.dot.m:hover,.dot.m.on{background:#b9a7dc}.dot.r:hover,.dot.r.on{background:#ffd66b}
+.fl{position:fixed;top:-40px;z-index:8;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<section id="intro" class="hero">
+<div id="cur"><i></i><i></i><b>✨ Tok tok… ada tamu kerajaan dateng! ✨</b></div>
+<span class="st" style="left:6%;top:30px">✦</span><span class="st" style="right:8%;top:70px;animation-delay:.8s">✧</span><span class="st" style="left:14%;top:260px;animation-delay:1.4s">✦</span><span class="st" style="right:12%;top:300px;animation-delay:.4s">✧</span>
+<svg viewBox="0 0 300 220" role="img" aria-label="Kastil dongeng"><circle cx="235" cy="45" r="24" fill="#fff3b8"/><circle cx="246" cy="39" r="22" fill="#ffe8f5" opacity=".0"/><ellipse cx="150" cy="205" rx="150" ry="30" fill="#9be8c4"/><rect x="95" y="105" width="110" height="95" fill="#fff" stroke="#c9b3ff" stroke-width="3"/><rect x="70" y="80" width="42" height="120" fill="#ffe0f0" stroke="#ff9ad0" stroke-width="3"/><rect x="188" y="80" width="42" height="120" fill="#ffe0f0" stroke="#ff9ad0" stroke-width="3"/><polygon points="62,80 91,30 120,80" fill="#ff7eb8"/><polygon points="180,80 209,30 238,80" fill="#ff7eb8"/><polygon points="120,105 150,55 180,105" fill="#b79bff"/><path d="M150 55V30l18 7-18 7" fill="#ffd66b"/><path d="M132 200v-40a18 18 0 0 1 36 0v40z" fill="#ffd66b"/><circle cx="91" cy="130" r="8" fill="#ffd66b"/><circle cx="209" cy="130" r="8" fill="#ffd66b"/><circle cx="150" cy="125" r="7" fill="#ffd66b"/><text x="30" y="60" font-size="18">✨</text><text x="255" y="110" font-size="16">⭐</text><text x="20" y="140" font-size="14">🌸</text></svg>
+<h1>Tes MBTI Negeri Dongeng</h1>
+<p>Halo, putri/pangeran/peri misterius! 🧚 Yuk cari tau lo tuh karakter dongeng tipe MBTI apa. 40 pertanyaan santuy, tinggal pilih rasa lo di skala 1 sampai 5, ga ada jawaban bener atau salah. Jawab yang paling <b>lo banget</b>. Hasilnya lengkap: karakter dongeng, kuliah, karir, kisah cinta, gaya belajar, sampe sahabat yang cocok. Bisa lo download juga!</p>
+<button class="btn" id="go">Buka pintu kerajaan ✨</button>
+<p class="mute" style="font-size:.85rem;margin-top:24px">Ini tes hiburan &amp; refleksi diri berbasis kerangka MBTI, bukan diagnosis psikologis resmi. Tipe lo bisa berubah seiring lo tumbuh.</p>
+</section>
+<section id="quiz" hidden>
+<div class="prog"><i id="pb"></i></div>
+<div class="card"><p class="mute" id="qn"></p><h2 id="qt" style="margin-top:0"></h2><div id="qo"></div></div>
+<button class="btn alt" id="back">← Balik dikit ya</button>
+</section>
+<section id="res" hidden></section>
+</main>
+<script>
+var Q=[
+["Weekend gabut, lo lebih seneng…","Nongkrong rame bareng banyak orang","Rebahan di kamar, me time","EI"],
+["Abis acara rame, lo ngerasa…","Makin charged, masih pengen lanjut","Low bat, butuh recharge sendirian","EI"],
+["Ketemu orang baru…","Gampang ngobrol, langsung akrab","Nunggu diajak duluan, butuh warm up","EI"],
+["Cara lo mikir…","Sambil ngomong, ide keluar pas ngobrol","Dimatengin di kepala dulu baru ngomong","EI"],
+["Lingkar pertemanan lo…","Luas, temen dari mana-mana","Kecil tapi deep","EI"],
+["Lo lebih percaya sama…","Fakta &amp; pengalaman nyata","Feeling &amp; insting soal kemungkinan","SN"],
+["Pas belajar hal baru…","Step by step, yang praktis dulu","Liat big picture &amp; konsepnya dulu","SN"],
+["Pikiran lo lebih sering…","Ngurusin yang ada di depan mata","Ngelamun soal masa depan &amp; what if","SN"],
+["Cara lo cerita…","Detail &amp; to the point","Muter-muter pake analogi","SN"],
+["Lo lebih suka…","Cara yang udah terbukti works","Nyoba cara baru yang belum ada yang coba","SN"],
+["Temen curhat masalah, lo…","Kasih solusi yang logis","Dengerin &amp; validasi perasaannya dulu","TF"],
+["Ambil keputusan penting, lo pake…","Logika &amp; pro-kontra","Nilai &amp; dampak ke orang lain","TF"],
+["Pas debat…","Yang penting bener, meski agak nyelekit","Jaga suasana biar ga ada yang sakit hati","TF"],
+["Lo lebih bangga disebut…","Kompeten &amp; objektif","Peduli &amp; hangat","TF"],
+["Ada yang dikritik keras tapi valid…","Ya emang harus dibilangin","Kasian, harusnya bisa lebih halus","TF"],
+["Pas liburan…","Itinerary rapi, udah booking semua","Ikut arus, spontan aja","JP"],
+["Soal deadline…","Nyicil, kelar jauh sebelum","Ngebut H-1, butuh adrenalin","JP"],
+["Meja/kamar lo…","Rapi, semua ada tempatnya","Chaos tapi lo tau letaknya","JP"],
+["Rencana berubah mendadak…","Stres, ga nyaman","Santai, malah seru","JP"],
+["Lo lebih suka…","Semuanya jelas &amp; kelar","Opsi tetap kebuka","JP"],
+["Lagi bete, lo biasanya…","Chat atau ngajak temen keluar","Ngurung diri dulu sampe mendingan","EI"],
+["Di grup, lo…","Yang paling aktif ngobrol","Lebih banyak nyimak","EI"],
+["Ditelepon mendadak…","Seneng, ayo ngobrol!","Deg-degan, mending chat aja","EI"],
+["Ultah lo idealnya…","Pesta rame","Makan malem kecil sama orang terdeket","EI"],
+["Energi lo dapet dari…","Interaksi sama orang","Waktu sendirian","EI"],
+["Lo lebih tertarik sama…","Apa yang terjadi sekarang","Apa yang mungkin terjadi nanti","SN"],
+["Dapet instruksi baru, lo…","Baca &amp; ikutin sesuai petunjuk","Coba-coba sendiri, improvisasi","SN"],
+["Lo lebih ngandelin…","Pengalaman langsung","Firasat &amp; pola yang lo tangkep","SN"],
+["Film favorit lo…","Realistis, based on true story","Fantasi &amp; dunia imajinasi","SN"],
+["Lo dikenal sebagai orang yang…","Membumi &amp; praktis","Imajinatif &amp; suka mikir jauh","SN"],
+["Milih kerjaan, lo utamain…","Gaji &amp; efisiensi","Makna &amp; suasana kerja","TF"],
+["Temen lo salah, lo…","Langsung kasih tau faktanya","Cari cara halus biar dia ga malu","TF"],
+["Keadilan buat lo berarti…","Aturan yang sama buat semua","Liat kondisi tiap orang","TF"],
+["Soal emosi, lo…","Nahan &amp; tetep rasional","Kebawa &amp; ekspresif","TF"],
+["Nonton film sedih, lo…","Analisis alur ceritanya","Nangis bombay","TF"],
+["Jadwal harian lo…","Udah tersusun","Ngalir aja","JP"],
+["Pas belanja…","Bikin list dulu","Beli yang menarik pas liat","JP"],
+["Soal keputusan…","Lebih enak cepet diputusin","Ditunda dulu buat cari info lagi","JP"],
+["Tugas numpuk, lo…","Bikin to-do list &amp; urutan","Kerjain yang lagi mood","JP"],
+["Weekend tanpa rencana…","Bikin gelisah","Surga dunia","JP"]
+];
+// [julukan, emoji, kepribadian, kelebihan, kelemahan, kuliah, karir, vibe sebagai temen, cocok temenan]
+var T={
+INTJ:["Penyihir Agung Strategis","🧙","Otak lo jalan kayak catur, selalu mikir 5 langkah ke depan. Mandiri, visioner, males basa-basi. Keliatan cuek, padahal lo peduli banget sama hasil yang bener.","Strategis, fokus, mandiri, standar tinggi","Keras kepala, susah delegasi, sering dikira dingin","Teknik Informatika, Sains Data, Ekonomi, Hukum, Arsitektur","Strategy consultant, data scientist, software architect, founder startup, peneliti","Jarang chat tapi sekalinya ngomong isinya daging semua. Setia, jujur, ga suka drama.","ENFP,ENTP"],
+INTP:["Alkemis Ramuan Nyeleneh","⚗️","Kepala lo isinya teori random jam 2 pagi. Penasaran akut, suka bongkar cara kerja segala hal. Dunia dalem lo tuh luas banget.","Analitis, kreatif, open minded, problem solver","Suka nunda, lupa hal praktis, susah ngungkapin perasaan","Ilmu Komputer, Fisika, Matematika, Filsafat, Teknik","Programmer, peneliti, game designer, analis, dosen","Temen yang bisa diajak debat receh sampe deep talk. Aneh-aneh tapi tulus, ngasih lo ruang jadi diri sendiri.","ENTJ,INFJ"],
+ENTJ:["Raja/Ratu Penakluk","👑","Lo lahir buat mimpin. Tegas, terarah, liat masalah sebagai puzzle yang harus kelar. Energi lo bikin tim ikut gas.","Leadership, efisien, percaya diri, visioner","Nggak sabaran, dominan, kadang lupa perasaan orang","Manajemen Bisnis, Hukum, Teknik Industri, Ilmu Politik, Ekonomi","CEO, manajer produk, konsultan, pengacara, entrepreneur","Temen yang narik lo buat berkembang. Blak-blakan, motivator, tapi kadang bossy.","INTP,INFJ"],
+ENTP:["Peri Iseng Penuh Akal","🧚","Lo tuh ide berjalan. Suka tantangan, suka debat demi seru, jago nyambungin hal yang ga nyambung. Bosenan, tapi charming.","Inovatif, cepet nangkep, karismatik, adaptif","Susah fokus, suka ngeyel, ninggalin proyek setengah jalan","Komunikasi, Bisnis, Hukum, DKV, Teknik","Entrepreneur, marketer, kreator konten, konsultan, jurnalis","Temen paling rame dan lucu, selalu ada ide gila. Tapi jangan harap on time.","INFJ,INTJ"],
+INFJ:["Peri Bulan","🌙","Langka banget. Lo bisa baca orang dan ngerasain vibe ruangan. Idealis, punya visi buat bikin dunia lebih baik, tapi lo simpen banyak hal di dalam.","Empatik, insightful, berprinsip, kreatif","Perfeksionis, gampang burnout, susah minta tolong","Psikologi, Ilmu Komunikasi, Sastra, Pendidikan, Sosiologi","Psikolog, konselor, penulis, guru, NGO, UX researcher","Temen yang paling ngerti lo tanpa lo jelasin panjang. Tapi butuh waktu sendiri, jangan dipaksa.","ENFP,ENTP"],
+INFP:["Putri Bunga Pemimpi","🌸","Dunia dalem lo penuh warna dan makna. Nilai hidup lo kuat banget, lo tulus, dan lo ngerasa segalanya dalem-dalem. Playlist lo aesthetic parah.","Autentik, kreatif, empatik, setia","Overthinking, baperan, suka menghindar konflik","Sastra, Psikologi, Seni, Desain, Ilmu Komunikasi","Penulis, ilustrator, konselor, content creator, desainer, aktivis","Pendengar terbaik, ga judgmental, kasih hadiah paling personal. Tapi kalo lo sakitin, dia diem dan menjauh.","ENFJ,ENTJ"],
+ENFJ:["Ratu Peri Berhati Hangat","🌟","Lo natural jadi pusat lingkaran. Hangat, inspiratif, peka banget sama kebutuhan orang. Lo pengen semua orang berkembang bareng lo.","Karismatik, komunikatif, suportif, terorganisir","Terlalu ngurusin orang lain, gampang ga enakan, sensitif kritik","Pendidikan, Psikologi, Hubungan Internasional, Komunikasi, Manajemen SDM","Guru, HR, public speaker, pemimpin komunitas, diplomat, event organizer","Temen yang inget ulang tahun lo dan bikin lo ngerasa penting. Kadang kepo ke hidup lo karena peduli.","INFP,ISFP"],
+ENFP:["Peri Kupu-kupu Ceria","🦋","Energi lo nular! Antusias, kreatif, gampang nemuin sisi bagus orang lain. Lo hidup buat kemungkinan baru dan koneksi yang bermakna.","Antusias, kreatif, hangat, mudah bergaul","Susah fokus, bosenan, overcommit","Komunikasi, Desain, Psikologi, Pariwisata, Seni Pertunjukan","Content creator, marketer, konselor, produser, wirausaha, jurnalis","Temen paling seru yang bikin hari biasa jadi core memory. Tapi suka lupa bales chat.","INFJ,INTJ"],
+ISTJ:["Ksatria Penjaga Gerbang","🛡️","Lo tuh fondasi. Bertanggung jawab, teliti, pegang janji. Lo lebih suka fakta dan sistem yang jelas daripada janji manis.","Disiplin, dapat diandalkan, detail, konsisten","Kaku, susah nerima perubahan, susah ekspresif","Akuntansi, Hukum, Teknik Sipil, Administrasi, Kedokteran","Akuntan, auditor, PNS, insinyur, notaris, manajer operasional","Temen yang selalu dateng pas dibutuhin dan ga pernah ingkar janji. Kalemnya bikin tenang.","ESFP,ESTP"],
+ISFJ:["Peri Rumah Pelindung","🏡","Lo diem-diem jadi pahlawan. Perhatian, setia, inget detail kecil tentang orang tersayang. Lo lebih seneng bantu dari belakang layar.","Peduli, teliti, loyal, sabar","Susah bilang tidak, mendem perasaan, takut perubahan","Keperawatan, Pendidikan, Kedokteran, Administrasi, Gizi","Perawat, dokter, guru, apoteker, HR, pekerja sosial","Temen yang bawain makanan pas lo sakit. Hangat banget, tapi jarang minta balik.","ESFP,ESTP"],
+ESTJ:["Jenderal Kerajaan","⚔️","Lo tuh yang bikin semuanya kelar. Terstruktur, tegas, dan suka aturan yang jelas. Lo ga suka ribet dan ga suka alesan.","Organisatoris, tegas, pekerja keras, jujur","Kaku, keras ke orang lain, susah nerima cara beda","Manajemen, Akuntansi, Hukum, Teknik Industri, Administrasi Publik","Manajer, pejabat, polisi/militer, banker, kontraktor, admin bisnis","Temen yang selalu bikin plan dan ngingetin lo. Blak-blakan tapi bisa diandelin.","ISFP,ISTP"],
+ESFJ:["Koki Pesta Kerajaan","🍰","Lo lem perekat circle. Ramah, perhatian, jago bikin orang nyaman. Harmoni buat lo penting banget, dan lo seneng ngurusin momen bareng.","Ramah, suportif, terorganisir, loyal","Butuh validasi, terlalu peduli omongan orang, sensitif kritik","Keperawatan, Pendidikan, Manajemen SDM, Pariwisata, Komunikasi","Guru, perawat, HR, event planner, customer relation, marketing","Temen yang selalu ngundang lo dan inget semua acara. Ngerangkul semua orang.","ISFP,ISTP"],
+ISTP:["Pandai Besi Santuy","⚒️","Kalem, praktis, jago ngulik. Lo tenang pas krisis dan suka ngerti cara kerja barang dengan tangan sendiri. Lo hemat kata, banyak aksi.","Praktis, adaptif, tenang, mandiri","Susah komit, suka ambil risiko, tertutup","Teknik Mesin, Elektro, Informatika, Penerbangan, Desain Produk","Mekanik, engineer, pilot, developer, teknisi, atlet","Temen chill yang ga banyak nanya, tapi pertama yang dateng bantu benerin masalah lo.","ESTJ,ESFJ"],
+ISFP:["Pelukis Hutan Ajaib","🎨","Lo hidup di momen, peka sama keindahan, dan ekspresif lewat karya, bukan omongan. Santai, baik hati, dan bebas dari label.","Artistik, ramah, fleksibel, loyal","Ga suka konflik, kurang planning, gampang tersinggung","Desain, Seni Rupa, Fotografi, Fashion, Kuliner","Desainer, fotografer, chef, musisi, fashion stylist, terapis","Temen yang lembut, ga ngatur, dan bikin lo ngerasa aman jadi diri sendiri.","ENFJ,ESFJ"],
+ESTP:["Pengembara Berani","🏴‍☠️","Lo hidup buat aksi. Berani, cepet baca situasi, jago nego, dan ga suka teori panjang. Lo pengen ngerasain langsung, bukan cuma denger.","Berani, karismatik, adaptif, praktis","Impulsif, kurang sabar, kurang mikir jangka panjang","Bisnis, Pemasaran, Ilmu Keolahragaan, Pariwisata, Komunikasi","Sales, wirausaha, event promotor, atlet, agen properti, paramedis","Temen yang selalu ngajak nyoba hal baru. Seru, loyal, tapi kadang bolos janji sabar.","ISTJ,ISFJ"],
+ESFP:["Bintang Panggung Peri","🎭","Lo tuh main character pesta. Spontan, hangat, lucu, dan bikin semua orang ikut seneng. Lo hidup buat sekarang dan lo peka sama mood orang.","Ceria, ramah, spontan, penghibur","Susah planning, gampang bosen, hindari hal serius","Seni Pertunjukan, Komunikasi, Pariwisata, Perhotelan, Kedokteran","Entertainer, MC, influencer, guru TK, hospitality, sales","Temen paling rame yang bikin nongkrong jadi hidup. Perhatian, tapi butuh dibantu urusan serius.","ISTJ,ISFJ"]
+};
+var E={
+INTJ:["Setia banget, tapi ekspresinya lewat aksi, bukan kata manis. Cari pasangan yang bisa diajak mikir dan ngerti kebutuhan ruang sendirinya.","Pelajarin konsep dasar dulu, terus bikin sistem sendiri. Paling enak belajar mandiri dengan target jelas.","Biasanya jadi otak rencana. Hasil kerjanya rapi, tapi ingetin dia buat dengerin ide orang lain."],
+INTP:["Jatuh cinta pelan-pelan lewat obrolan deep dan ide random. Butuh pasangan yang sabar sama sifat lupa-waktunya.","Belajar paling enak kalo bisa ngulik kenapa-nya. Hafalan doang bikin bosen.","Jago nemuin solusi unik, tapi suka ngilang pas bagian administratif. Kasih dia tugas riset."],
+ENTJ:["Terus terang dan serius komit. Suka pasangan yang punya tujuan hidup sendiri dan berani ngimbangin.","Bikin jadwal ketat dan target nilai. Belajar kelompok? Dia yang jadi ketua.","Otomatis jadi ketua. Tim kelar lebih cepet, tapi dia kadang lupa nanya perasaan anggota."],
+ENTP:["Seru, gombalnya kreatif, suka debat manja. Gampang bosen, jadi butuh pasangan yang bisa ngikutin ritmenya.","Belajar dari diskusi dan debat, bukan dari buku tebel. Kerjainnya sering dadakan.","Penyumbang ide terbanyak. Butuh temen yang ngeksekusi karena dia gampang loncat ke ide baru."],
+INFJ:["Cintanya dalem dan tulus, pengen hubungan yang bermakna. Susah jatuh cinta, tapi sekali sayang, all in.","Belajar oke kalo topiknya punya makna. Suka bikin catatan rapi di suasana tenang.","Peka sama dinamika tim dan jadi penengah. Kadang mendem capek sendiri, jadi tanyain dia."],
+INFP:["Romantis banget dan cari soulmate sejati. Nyimpen banyak perasaan, jadi butuh pasangan yang lembut.","Belajar sesuai mood dan minat. Kalo topiknya menyentuh, dia bisa hyperfokus.","Suportif dan kreatif, tapi kurang suka konflik dan tekanan. Kasih ruang biar idenya keluar."],
+ENFJ:["Perhatian, hangat, hobi ngerawat hubungan. Awas kebanyakan ngutamain pasangan sampe lupa diri sendiri.","Suka belajar rame-rame dan ngajarin orang lain. Ngajar balik itu cara dia paham.","Perekat tim. Ngatur, nyemangatin, dan mastiin semua kebagian peran."],
+ENFP:["Antusias dan penuh kejutan, bikin hari-hari ga ngebosenin. Butuh kebebasan dan apresiasi.","Belajar pas lagi semangat, ide banyak tapi suka nunda. Pake variasi metode biar ga bosen.","Pembawa energi dan ide segar. Kadang perlu diingetin deadline dan detail."],
+ISTJ:["Setia, konsisten, nunjukin cinta lewat tindakan nyata. Pelan tapi serius, dan komit banget.","Belajar terstruktur: catatan rapi, jadwal jelas, latihan soal berulang.","Paling bisa diandelin. Tugasnya pasti kelar tepat waktu dan sesuai aturan."],
+ISFJ:["Perhatian sama hal kecil, romantisnya lewat pelayanan. Sabar dan loyal, tapi sering nahan isi hati.","Belajar lewat pengulangan dan contoh nyata. Suasana tenang bikin dia fokus.","Kerja tekun di belakang layar. Sering ngalah, jadi pastiin dia berani bilang tidak."],
+ESTJ:["Serius, tegas, dan bisa diandalkan. Cintanya nyata: bikin rencana masa depan bareng.","Suka jadwal, target, dan aturan main jelas. Belajar kelompok ala rapat.","Pengatur alur kerja. Tim jadi efisien, tapi kasih ruang buat ide di luar SOP."],
+ESFJ:["Romantis hangat dan suka ngurus. Butuh diapresiasi dan diyakinkan bahwa dia dicintai.","Belajar paling enak bareng temen dan suasana asik. Suka ngajarin balik.","Bikin suasana tim nyaman dan solid. Awas terlalu nyari validasi."],
+ISTP:["Cool dan ga banyak omong, nunjukin sayang lewat bantuan praktis. Butuh ruang dan kebebasan.","Belajar sambil praktek langsung dan bongkar pasang. Teori panjang bikin ngantuk.","Tenang pas krisis dan jago nyelesain masalah teknis. Ga suka meeting bertele-tele."],
+ISFP:["Lembut, tulus, penuh perhatian kecil. Cintanya artistik: lagu, foto, hadiah handmade.","Belajar lewat visual, praktek, dan suasana nyaman. Ga suka tekanan.","Anggota tim yang kalem dan kreatif. Kasih kebebasan dan jangan ditekan."],
+ESTP:["Fun, spontan, banyak aksi. Ajakannya dadakan, butuh pasangan yang siap petualangan.","Belajar dengan praktek dan tantangan nyata. Ngebut pas deadline.","Jago negosiasi dan ambil keputusan cepat. Perlu diingetin bagian detail."],
+ESFP:["Hangat, ekspresif, bikin pasangan ketawa terus. Kasih perhatian lewat momen seru.","Belajar rame-rame dengan cara fun (game, video, praktik). Fokusnya cepet abis.","Penghibur tim. Bikin suasana hidup, tapi butuh bantuan urusan administratif."]
+};
+var DIM=[["E","I","Extrovert","Introvert"],["S","N","Sensing","Intuition"],["T","F","Thinking","Feeling"],["J","P","Judging","Perceiving"]];
+var i=0,A=[],Qs=Q,sc,type,rep;
+var $=function(x){return document.getElementById(x)};
+function show(id){["intro","quiz","res"].forEach(function(s){$(s).hidden=s!==id});window.scrollTo(0,0)}
+function start(){Qs=Q.slice().sort(function(){return Math.random()-.5});start()}
+function ask(){
+ var q=Qs[i];$("qn").textContent="Halaman "+(i+1)+" dari "+Qs.length+" buku dongeng 📖";
+ $("qt").innerHTML=q[0];$("pb").style.width=(i/Qs.length*100)+"%";
+ var o=$("qo");
+ o.innerHTML='<div class="pair"><div class="side a">'+q[1]+'</div><div class="side b">'+q[2]+'</div></div><div class="sc"></div><div class="lb"><span>Banget kiri</span><span>Netral</span><span>Banget kanan</span></div>';
+ var sc0=o.querySelector(".sc");
+ [[2,52,"l","Banget kiri"],[1,38,"l","Agak kiri"],[0,30,"m","Netral"],[-1,38,"r","Agak kanan"],[-2,52,"r","Banget kanan"]].forEach(function(d){
+  var b=document.createElement("button");b.className="dot "+d[2]+(A[i]===d[0]?" on":"");b.style.width=b.style.height=d[1]+"px";b.setAttribute("aria-label",d[3]);
+  b.onclick=function(){A[i]=d[0];setTimeout(function(){i++;i<Qs.length?ask():finish()},160)};sc0.appendChild(b)});
+ $("back").hidden=i===0;
+}
+function finish(){
+ var sm=[0,0,0,0];sc={};
+ Qs.forEach(function(q,n){sm["EI SN TF JP".split(" ").indexOf(q[3])]+=A[n]});
+ DIM.forEach(function(d,k){var a=Math.round((sm[k]+20)/40*100);sc[d[0]]=a;sc[d[1]]=100-a});
+ type=DIM.map(function(d){return sc[d[0]]>=sc[d[1]]?d[0]:d[1]}).join("");
+ render();show("res");burst();
+}
+function burst(){
+ if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+ var em=["✨","🌸","⭐","🦋","💖","🧚"];
+ for(var k=0;k<26;k++){var f=document.createElement("span");f.className="fl";f.textContent=em[k%6];
+  f.style.left=Math.random()*95+"%";f.style.fontSize=(18+Math.random()*20)+"px";
+  f.style.animationDuration=(2.5+Math.random()*2.5)+"s";f.style.animationDelay=Math.random()*.8+"s";
+  document.body.appendChild(f);(function(x){setTimeout(function(){x.remove()},6500)})(f)}
+}
+function esc(s){return String(s).replace(/&amp;/g,"&")}
+function render(){
+ var t=T[type],h="",L=[];
+ h+='<div class="card" style="text-align:center"><div class="mute">Di negeri dongeng, lo adalah…</div><div style="font-size:3.4rem">'+t[1]+'</div><p class="big">'+type+'</p><h2 style="margin-top:.2em">'+t[0]+'</h2><p>'+t[2]+'</p></div>';
+ h+='<div class="card"><h2 style="margin-top:0">Ramuan kepribadian lo 🧪</h2>';
+ DIM.forEach(function(d){var a=sc[d[0]],b=sc[d[1]],w=a>=b?d[0]:d[1];
+  h+='<div><b>'+d[2]+' '+a+'%</b> vs <b>'+d[3]+' '+b+'%</b> <span class="mute">('+w+' menang)</span><div class="bar"><i style="width:'+a+'%"></i></div></div>';
+  L.push(d[2]+" "+a+"% vs "+d[3]+" "+b+"%")});
+ h+='</div><div class="card"><h2 style="margin-top:0">Kepribadian lo 🌟</h2><p><b>Kelebihan:</b> '+t[3]+'.</p><p><b>Yang perlu dijaga:</b> '+t[4]+'.</p></div>';
+ var e=E[type];
+ h+='<div class="card"><h2 style="margin-top:0">Kisah cinta lo 💘</h2><p>'+e[0]+'</p><h2>Gaya belajar 📚</h2><p>'+e[1]+'</p><h2>Kalo kerja kelompok 🤝</h2><p>'+e[2]+'</p></div>';
+ h+='<div class="card"><h2 style="margin-top:0">Prospek kuliah 🎓</h2><p>'+t[5].split(", ").map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</p><h2>Prospek kerja 💼</h2><p>'+t[6].split(", ").map(function(x){return '<span class="tag">'+x+'</span>'}).join("")+'</p><p class="mute" style="font-size:.9rem">Ini gambaran kecenderungan, bukan larangan. Minat &amp; skill lo tetep yang paling nentuin.</p></div>';
+ h+='<div class="card"><h2 style="margin-top:0">Sahabat dongeng lo 💞</h2>';
+ var F=[];
+ t[8].split(",").forEach(function(k){var f=T[k];F.push(k+" "+f[0]+": "+f[7]);
+  h+='<div class="f"><b>'+f[1]+' '+k+' – '+f[0]+'</b><p style="margin:.3em 0 0">'+f[7]+'</p></div>'});
+ h+='<p class="mute" style="font-size:.9rem">Cocok bukan berarti tipe lain ga bisa. Ini cuma tipe yang biasanya ngisi kekurangan lo secara natural.</p></div>';
+ h+='<div class="row"><button class="btn" id="dl">⬇ Download hasil (.html)</button><button class="btn alt" id="dt">⬇ Download (.txt)</button><button class="btn alt" id="re">Ulang tes</button></div><p class="mute" id="msg"></p>';
+ $("res").innerHTML=h;
+ rep=["HASIL TES MBTI NEGERI DONGENG","Tipe lo: "+type+" – "+t[0],"",t[2],""].concat(["KOMPOSISI"],L,["","KELEBIHAN: "+t[3],"YANG PERLU DIJAGA: "+t[4],"","KISAH CINTA: "+e[0],"GAYA BELAJAR: "+e[1],"KERJA KELOMPOK: "+e[2],"","PROSPEK KULIAH: "+t[5],"PROSPEK KERJA: "+t[6],"","COCOK TEMENAN SAMA"],F,["","Tes hiburan &amp; refleksi diri, bukan diagnosis psikologis."]).map(esc);
+ $("re").onclick=function(){start()};
+ $("dl").onclick=function(){save("html")};$("dt").onclick=function(){save("txt")};
+}
+function save(ext){
+ var name="hasil-mbti-"+type+"."+ext,data,ty;
+ if(ext==="txt"){data=rep.join("\n");ty="text/plain"}
+ else{data='<!DOCTYPE html><meta charset="utf-8"><title>Hasil MBTI '+type+'</title><body style="font:16px/1.6 system-ui;max-width:640px;margin:2em auto;padding:0 1em">'+rep.map(function(l,n){return n===0?'<h1>'+l+'</h1>':'<p style="margin:.3em 0">'+l.replace(/</g,"&lt;")+'</p>'}).join("");ty="text/html"}
+ var m=$("msg");
+ if(!(window.claude&&claude.use)){var u=URL.createObjectURL(new Blob([data],{type:ty+";charset=utf-8"})),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();m.textContent="Kesimpen! ✅";return}
+ claude.use("downloads").then(function(d){
+  if(!d){m.textContent="Download ga tersedia di tampilan ini.";return}
+  return d.save({filename:name,data:new Blob([data],{type:ty+";charset=utf-8"})}).then(function(){m.textContent="Kesimpen! ✅"},function(e){m.textContent=e&&e.code==="declined"?"Download dibatalin.":"Gagal download, coba lagi ya."})
+ });
+}
+$("go").onclick=function(){i=0;A=[];show("quiz");ask()};
+$("back").onclick=function(){if(i>0){i--;ask()}};
+</script>
+</body>
+</html>
